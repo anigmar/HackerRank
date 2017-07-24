@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    static BigInteger fibonacciModified(BigInteger bt0, BigInteger bt1, int pos){
+        
+        int cont = 2;
+        int exp = 2;
+        BigInteger bt2 = BigInteger.valueOf(1);//minimum value for t0 = 0 and t1 = 1
+        
+        while(cont < pos){
+            bt2 = bt0.add((bt1).pow(exp));
+            bt0 = bt1;
+            bt1 = bt2;
+            cont++;
+        }
+        
+        return bt2;
+    }
+    
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        Scanner in = new Scanner(System.in);
+        BigInteger bt0 = BigInteger.valueOf(in.nextInt());
+        BigInteger bt1 = BigInteger.valueOf(in.nextInt());
+        int pos = in.nextInt();
+        System.out.println(fibonacciModified(bt0, bt1, pos));
+
+    }
+}
