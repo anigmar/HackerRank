@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static void minMaxSum(int[] ar) {
+        long[] result = new long[2];
+        result[0] = 0;
+        result[1] = 0;
+        for(int skip = 0; skip < ar.length; skip++){
+            long sum = 0;
+            for(int i = 0; i < ar.length; i++){
+                if(skip != i){
+                    sum += ar[i];
+                }
+            }
+            updateResult(result, sum);
+        }
+        System.out.println(result[0] + " " + result[1]);
+    }
+    
+    static long [] updateResult(long[] result, long sum) {
+        if(result[0] == 0){
+            result[0] = sum;
+        } else if(sum < result[0]){
+            if(result[1] == 0){
+                result[1] = result[0];
+            }
+            result[0] = sum;
+        } else if( sum > result[1]){
+            result[1] = sum;
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int[] arr = new int[5];
+        for(int arr_i=0; arr_i < 5; arr_i++){
+            arr[arr_i] = in.nextInt();
+        }
+        minMaxSum(arr);
+    }
+}
