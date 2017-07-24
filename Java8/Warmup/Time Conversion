@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String timeConversion(String s) {
+        // Complete this function
+        int hour = Integer.parseInt(s.substring(0,2));
+        if(s.contains("PM")){
+            s = s.substring(2, s.length()-2);
+            s = hour%12 + 12 + s;
+        }else{
+            if(hour == 12){
+                s = "00" + s.substring(2, s.length()-2);
+            }else{
+                s = s.substring(0, s.length()-2);
+            }
+        }
+        return s;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String result = timeConversion(s);
+        System.out.println(result);
+    }
+}
